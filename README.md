@@ -9,14 +9,16 @@ A minimal, browser-based database manager designed specifically for PostgreSQL a
 *   **Tabbed Interface:** Open multiple tables and custom query results simultaneously in a modern tabbed layout.
 *   **Table Structure View:** View detailed table schemas, including column definitions, data types, nullability, default values, primary keys, and index algorithms.
 *   **Pagination & Virtualization:** Fetching is optimized with 50-row `LIMIT`/`OFFSET` pagination, and rendering is handled via `@tanstack/react-virtual` to ensure a smooth UI even with thousands of columns.
+*   **Row Details Modal:** Click the eye icon (👁️) on any row to open a detailed modal for viewing long texts, copying individual cell values, or copying the entire row as JSON.
 
 ### Data Manipulation
 *   **Inline Editing:** Double-click any cell in the data grid to edit it. Modified cells are highlighted, and a "Commit Changes" button allows you to safely persist changes to the database (Requires the table to have a Primary Key).
-*   **Custom SQL Execution:** A full-featured SQL editor (powered by CodeMirror) with syntax highlighting.
+*   **Custom SQL Execution:** A full-featured SQL editor (powered by CodeMirror) with syntax highlighting and the ability to cancel running queries.
 *   **Query History:** Successfully executed queries are automatically saved. You can export your history to a JSON file and import it across different devices.
+*   **Connection History:** Recent connection strings are saved and securely masked for quick access.
 
 ### Geographic Data & PostGIS
-*   **Instant Map Visualization:** Run any query returning `WKB` (Well-Known Binary) or PostGIS geometries and instantly toggle to the **Map View** to see the results rendered on a Leaflet map.
+*   **Instant Map Visualization:** Run any query returning `WKB` (Well-Known Binary) or PostGIS geometries and instantly toggle to the **Map View** to see the results rendered on a Leaflet map. *(Tip: Use `ST_Transform(geom, 4326)` for proper WGS84 mapping).*
 *   **Interactive Map Popups:** Clicking on a rendered geographic feature (point, polygon, etc.) will open a popup displaying all other row attributes attached to that geometry.
 *   **WKB Unpacking:** Hexadecimal binary geometries in the data table are automatically parsed and displayed as human-readable WKT (Well-Known Text).
 
@@ -41,7 +43,24 @@ Because modern web browsers do not support raw TCP socket connections, this appl
 *   Node.js (v18+)
 *   A running PostgreSQL instance (local or remote)
 
-### 1. Start the Backend Proxy
+### Quick Start
+You can start both the backend proxy and the frontend simultaneously using the provided startup scripts from the root directory:
+
+**On Linux/macOS:**
+```bash
+./start.sh
+```
+
+**On Windows:**
+```cmd
+start.bat
+```
+*(The frontend will be available at `http://localhost:5173` and the backend proxy at `http://localhost:3001`.)*
+
+### Manual Start
+If you prefer to run them separately:
+
+**1. Start the Backend Proxy**
 Open a terminal and navigate to the backend folder:
 ```bash
 cd backend
@@ -50,7 +69,7 @@ npm run dev
 ```
 *The proxy server will start on `http://localhost:3001`.*
 
-### 2. Start the Frontend
+**2. Start the Frontend**
 Open a second terminal and navigate to the frontend folder:
 ```bash
 cd frontend
