@@ -1,6 +1,6 @@
 # PostGIS Manager
 
-A minimal, browser-based database manager designed specifically for PostgreSQL and PostGIS databases. Inspired by modern native tools like TablePlus, this application runs directly in your browser, allowing you to seamlessly explore schemas, edit data inline, query via natural language using Gemini AI, and instantly visualize geographic data on interactive maps.
+A minimal, browser-based database manager designed specifically for PostgreSQL and PostGIS databases. This application runs directly in your browser, allowing you to seamlessly explore schemas, edit data inline, query via natural language using Gemini AI, and instantly visualize geographic data on interactive maps.
 
 ## 🚀 Features & Abilities
 
